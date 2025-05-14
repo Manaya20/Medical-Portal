@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Dashboard - Medical Portal{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Navigation</h5>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="{% url 'patient_dashboard' %}" class="list-group-item list-group-item-action active">Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action">Appointments</a>
+                <a href="#" class="list-group-item list-group-item-action">Medical Records</a>
+                <a href="#" class="list-group-item list-group-item-action">Messages</a>
+                <a href="#" class="list-group-item list-group-item-action">Settings</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <h1 class="mb-4">Patient Dashboard</h1>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">My Profile</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-4 mb-md-0">
+                        <img src="{{ profile.profile_picture.url }}" alt="{{ user.get_full_name }}" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                        <h4>{{ user.get_full_name }}</h4>
+                        <p class="text-muted">@{{ user.username }}</p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <h6 class="text-muted">Email</h6>
+                                <p>{{ user.email }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-muted">Role</h6>
+                                <p class="text-capitalize">{{ user.role }}</p>
+                            </div>
+                        </div>
+                        
+                        <h6 class="text-muted">Address</h6>
+                        <p>
+                            {{ profile.address_line1 }}<br>
+                            {{ profile.city }}, {{ profile.state }} {{ profile.pincode }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Upcoming Appointments</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">You have no upcoming appointments.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Recent Medical Records</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">No recent medical records found.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

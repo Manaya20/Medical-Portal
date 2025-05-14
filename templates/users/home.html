@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4 mb-4">Welcome to the Medical Portal</h1>
+    <p class="lead mb-5">A secure platform connecting patients and doctors.</p>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="d-grid gap-3">
+                <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">Sign Up</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">Log In</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h3 class="card-title">For Patients</h3>
+                <p class="card-text">Access your medical records, schedule appointments, and communicate with your doctors.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h3 class="card-title">For Doctors</h3>
+                <p class="card-text">Manage patient records, appointments, and provide remote consultations.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h3 class="card-title">Secure Platform</h3>
+                <p class="card-text">Your data is protected with industry-standard security measures.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
