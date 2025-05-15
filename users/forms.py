@@ -37,18 +37,28 @@ class UserSignupForm(UserCreationForm):
         
         if commit:
             user.save()
-            # Create user profile
-            profile = UserProfile(
-                user=user,
-                address_line1=self.cleaned_data['address_line1'],
-                city=self.cleaned_data['city'],
-                state=self.cleaned_data['state'],
-                pincode=self.cleaned_data['pincode']
-            )
+            # Check if a profile already exists before creating a new one
+            try:
+                profile = user.profile
+            except:
+                # Create user profile only if it doesn't exist
+                profile = UserProfile(
+                    user=user,
+                    address_line1=self.cleaned_data['address_line1'],
+                    city=self.cleaned_data['city'],
+                    state=self.cleaned_data['state'],
+                    pincode=self.cleaned_data['pincode']
+                )
             
-            if self.cleaned_data['profile_picture']:
-                profile.profile_picture = self.cleaned_data['profile_picture']
-                
-            profile.save()
+        # Update profile fields
+        profile.address_line1 = self.cleaned_data['address_line1']
+        profile.city = self.cleaned_data['city']
+        profile.state = self.cleaned_data['state']
+        profile.pincode = self.cleaned_data['pincode']
+        
+        if self.cleaned_data['profile_picture']:
+            profile.profile_picture = self.cleaned_data['profile_picture']
             
-        return user
+        profile.save()
+        
+    return user

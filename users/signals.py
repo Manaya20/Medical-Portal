@@ -6,8 +6,16 @@ from .models import CustomUser, UserProfile
 def create_profile(sender, instance, created, **kwargs):
     """Create a UserProfile for new users if one doesn't exist"""
     if created:
-        # Only create if it doesn't already exist (might be created in the form)
-        UserProfile.objects.get_or_create(user=instance)
+        # Only create if it doesn't already exist
+        UserProfile.objects.get_or_create(
+            user=instance,
+            defaults={
+                'address_line1': '',
+                'city': '',
+                'state': '',
+                'pincode': ''
+            }
+        )
 
 @receiver(post_save, sender=CustomUser)
 def save_profile(sender, instance, **kwargs):
