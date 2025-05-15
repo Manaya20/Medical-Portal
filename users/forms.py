@@ -50,15 +50,15 @@ class UserSignupForm(UserCreationForm):
                     pincode=self.cleaned_data['pincode']
                 )
             
-        # Update profile fields
-        profile.address_line1 = self.cleaned_data['address_line1']
-        profile.city = self.cleaned_data['city']
-        profile.state = self.cleaned_data['state']
-        profile.pincode = self.cleaned_data['pincode']
-        
-        if self.cleaned_data['profile_picture']:
-            profile.profile_picture = self.cleaned_data['profile_picture']
+            # Update profile fields
+            profile.address_line1 = self.cleaned_data['address_line1']
+            profile.city = self.cleaned_data['city']
+            profile.state = self.cleaned_data['state']
+            profile.pincode = self.cleaned_data['pincode']
             
-        profile.save()
-        
-    return user
+            if self.cleaned_data['profile_picture']:
+                profile.profile_picture = self.cleaned_data['profile_picture']
+                
+            profile.save()
+            
+        return user
